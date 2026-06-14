@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+
+.user-menu .user-image {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.875rem;
+}
+
+.user-header .user-image {
+  width: 5rem;
+  height: 5rem;
+}
+
+.account-avatar {
+  width: 5rem;
+  height: 5rem;
+}
+
+.sidebar-brand .brand-image {
+  width: 2.1rem;
+  height: 2.1rem;
+  font-size: 0.75rem;
+}
+
+.small-box-icon.bi {
+  font-size: 4rem;
+  top: 15px;
+  right: 15px;
+  height: auto;
+  width: auto;
+}
