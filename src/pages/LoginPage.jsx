@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { setBodyClass } from '../lib/adminlte'
 
 class LoginPage extends Component {
@@ -8,6 +8,7 @@ class LoginPage extends Component {
     this.state = {
       email: '',
       password: '',
+      showPassword: false,
       error: '',
       isSubmitting: false,
     }
@@ -15,6 +16,10 @@ class LoginPage extends Component {
 
   componentDidMount() {
     setBodyClass('login-page bg-body-secondary')
+  }
+
+  toggleShowPassword = () => {
+    this.setState((s) => ({ showPassword: !s.showPassword }))
   }
 
   componentWillUnmount() {
@@ -101,7 +106,7 @@ class LoginPage extends Component {
                   <input
                     id="loginPassword"
                     name="password"
-                    type="password"
+                    type={this.state.showPassword ? 'text' : 'password'}
                     className="form-control"
                     placeholder="Password"
                     autoComplete="current-password"
@@ -112,7 +117,16 @@ class LoginPage extends Component {
                   <label htmlFor="loginPassword">Password</label>
                 </div>
                 <div className="input-group-text">
-                  <span className="bi bi-lock-fill"></span>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-link p-0"
+                    onClick={this.toggleShowPassword}
+                    aria-label={this.state.showPassword ? 'Hide password' : 'Show password'}
+                    disabled={isSubmitting}
+                    style={{ color: 'inherit', textDecoration: 'none' }}
+                  >
+                    <span className={`bi ${this.state.showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></span>
+                  </button>
                 </div>
               </div>
 
@@ -137,6 +151,10 @@ class LoginPage extends Component {
                     </button>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-2 mb-0">
+                <Link to="/forgot-password">Forgot your password?</Link>
               </div>
             </form>
 
