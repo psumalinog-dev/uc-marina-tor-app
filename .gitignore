@@ -53,3 +53,9 @@ Desktop.ini
 
 # Optional debug output
 *.tsbuildinfo
+
+.vs/
+node_modules/
+bin/
+obj/
+dist/
