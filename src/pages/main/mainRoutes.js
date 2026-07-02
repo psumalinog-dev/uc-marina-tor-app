@@ -1,5 +1,4 @@
 export const MAIN_NAV_ITEMS = [
-<<<<<<< HEAD
     {
         path: '/dashboard',
         label: 'Dashboard',
@@ -7,7 +6,6 @@ export const MAIN_NAV_ITEMS = [
         title: 'Dashboard',
         breadcrumb: 'Dashboard',
     },
-
     {
         path: '/account',
         label: 'Account',
@@ -15,7 +13,6 @@ export const MAIN_NAV_ITEMS = [
         title: 'Account',
         breadcrumb: 'Account',
     },
-
     {
         path: '/notifications',
         label: 'Notifications',
@@ -23,8 +20,6 @@ export const MAIN_NAV_ITEMS = [
         title: 'Notifications',
         breadcrumb: 'Notifications',
     },
-
-  
     {
         path: '/marina-tor',
         label: 'Marina TOR',
@@ -32,43 +27,17 @@ export const MAIN_NAV_ITEMS = [
         title: 'Marina TOR',
         breadcrumb: 'Marina TOR',
     },
-=======
-  {
-    path: '/dashboard',
-    label: 'Dashboard',
-    icon: 'bi bi-speedometer',
-    title: 'Dashboard',
-    breadcrumb: 'Dashboard',
-  },
-  {
-    path: '/account',
-    label: 'Account',
-    icon: 'bi bi-person',
-    title: 'Account',
-    breadcrumb: 'Account',
-  },
-  {
-    path: '/notifications',
-    label: 'Notifications',
-    icon: 'bi bi-bell',
-    title: 'Notifications',
-    breadcrumb: 'Notifications',
-  },
-  {
-    path: '/marina-tor',
-    label: 'Marina TOR',
-    icon: 'bi bi-file-earmark-text',
-    title: 'Marina TOR',
-    breadcrumb: 'Marina TOR',
-  },
->>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
-]
+];
 
 export function getMainPageMeta(pathname) {
-    const match = MAIN_NAV_ITEMS.find((item) => item.path === pathname)
+    const match = MAIN_NAV_ITEMS.find(
+        (item) => item.path === pathname
+    );
 
-    return match || {
-        title: 'Dashboard',
-        breadcrumb: 'Dashboard',
-    }
+    return (
+        match || {
+            title: 'Dashboard',
+            breadcrumb: 'Dashboard',
+        }
+    );
 }

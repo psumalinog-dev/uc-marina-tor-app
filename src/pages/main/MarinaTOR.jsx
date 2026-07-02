@@ -2,6 +2,7 @@ import "./MarinaTOR.css";
 import { useState, useRef } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+
 function SemesterBlock({ title }) {
     const [academicYear, setAcademicYear] = useState("");
 
@@ -50,6 +51,7 @@ function SemesterBlock({ title }) {
         </>
     );
 }
+
 function SummerBlock() {
     const years = [];
 
@@ -66,6 +68,7 @@ function SummerBlock() {
 
                     <select className="year-select">
                         <option value="">Academic Year</option>
+
                         {years.map((year) => (
                             <option key={year} value={year}>
                                 {year}
@@ -113,56 +116,39 @@ export default function MarinaTOR() {
     const [secondarySchool, setSecondarySchool] = useState("");
     const torRef = useRef();
     const exportPDF = () => {
-    const buttons = document.querySelectorAll(".summer-button-row");
-
-    buttons.forEach(button => {
-        button.style.display = "none";
-    });
-
-    const input = torRef.current;
-
-    html2canvas(input, {
-        scale: 2,
-        useCORS: true,
-    }).then((canvas) => {
+        const buttons = document.querySelectorAll(".summer-button-row");
 
         buttons.forEach(button => {
-            button.style.display = "";
+            button.style.display = "none";
         });
 
-        const imgData = canvas.toDataURL("image/png");
+        const input = torRef.current;
 
-        const pdf = new jsPDF("p", "mm", "legal");
+        html2canvas(input, {
+            scale: 2,
+            useCORS: true,
+        }).then((canvas) => {
 
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
+            buttons.forEach(button => {
+                button.style.display = "";
+            });
 
-        const margin = 12.7;
+            const imgData = canvas.toDataURL("image/png");
 
-        const imgWidth = pdfWidth - (margin * 2);
+            const pdf = new jsPDF("p", "mm", "legal");
 
-        const imgHeight =
-            (canvas.height * imgWidth) / canvas.width;
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
 
-        let heightLeft = imgHeight;
-        let position = margin;
+            const margin = 12.7;
 
-        pdf.addImage(
-            imgData,
-            "PNG",
-            margin,
-            position,
-            imgWidth,
-            imgHeight
-        );
+            const imgWidth = pdfWidth - (margin * 2);
 
-        heightLeft -= (pageHeight - (margin * 2));
+            const imgHeight =
+                (canvas.height * imgWidth) / canvas.width;
 
-        while (heightLeft > 0) {
-
-            position = heightLeft - imgHeight + margin;
-
-            pdf.addPage("legal", "p");
+            let heightLeft = imgHeight;
+            let position = margin;
 
             pdf.addImage(
                 imgData,
@@ -174,45 +160,63 @@ export default function MarinaTOR() {
             );
 
             heightLeft -= (pageHeight - (margin * 2));
-        }
 
-        const fileName = studentName.trim()
-            ? `${studentName.replace(/\s+/g, "_")}_TOR.pdf`
-            : "OfficialTranscriptOfRecords.pdf";
+            while (heightLeft > 0) {
 
-        pdf.save(fileName);
-    });
-};
+                position = heightLeft - imgHeight + margin;
+
+                pdf.addPage("legal", "p");
+
+                pdf.addImage(
+                    imgData,
+                    "PNG",
+                    margin,
+                    position,
+                    imgWidth,
+                    imgHeight
+                );
+
+                heightLeft -= (pageHeight - (margin * 2));
+            }
+
+            const fileName = studentName.trim()
+                ? `${studentName.replace(/\s+/g, "_")}_TOR.pdf`
+                : "OfficialTranscriptOfRecords.pdf";
+
+            pdf.save(fileName);
+        });
+
+    };
 
     return (
-    <div className="tor-wrapper">
+        <div className="tor-wrapper">
 
-        <div className="breadcrumb">
-            TOR Management &gt; Official Transcript of Records &gt; Generate
-        </div>
-
-        <div className="top-header">
-            <h1>Official Transcript of Records</h1>
-
-            <div className="action-buttons">
-                <button className="preview-btn">
-                    Preview / Print
-                </button>
-
-                <button
-                    className="export-btn"
-                    onClick={exportPDF}
-                >
-                    Export PDF
-                </button>
+            <div className="breadcrumb">
+                TOR Management &gt; Official Transcript of Records &gt; Generate
             </div>
-        </div>
 
-        <div className="page-counter">
-            Page 1 of 1
-        </div>
+            <div className="top-header">
+                <h1>Official Transcript of Records</h1>
 
-        <div className="tor-paper" ref={torRef}>
+                <div className="action-buttons">
+                    <button className="preview-btn">
+                        Preview / Print
+                    </button>
+
+                    <button
+                        className="export-btn"
+                        onClick={exportPDF}
+                    >
+                        Export PDF
+                    </button>
+                </div>
+            </div>
+
+            <div className="page-counter">
+                Page 1 of 1
+            </div>
+
+            <div className="tor-paper" ref={torRef}>
 
                 {/* HEADER */}
                 <div className="school-header">
@@ -275,16 +279,16 @@ export default function MarinaTOR() {
                             </td>
 
                             <td className="right-label-cell">
-                                    Sex:
-                                </td>
+                                Sex:
+                            </td>
 
-                                <td className="small-value-cell">
-                                    <select className="tor-select">
-                                        <option value="">Select</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
-                                </td>
+                            <td className="small-value-cell">
+                                <select className="tor-select">
+                                    <option value="">Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td className="label-cell">

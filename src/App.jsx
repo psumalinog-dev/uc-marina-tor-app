@@ -1,84 +1,54 @@
-import { Component } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { Component } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import LoginPage from './pages/LoginPage'
-import MainLayoutPage from './pages/main/MainLayoutPage'
-import DashboardPage from './pages/main/DashboardPage'
-import AccountPage from './pages/main/AccountPage'
-import NotificationPage from './pages/main/NotificationPage'
-import MarinaTOR from './pages/main/MarinaTOR'
+import LoginPage from './pages/LoginPage';
+import MainLayoutPage from './pages/main/MainLayoutPage';
+import DashboardPage from './pages/main/DashboardPage';
+import AccountPage from './pages/main/AccountPage';
+import NotificationPage from './pages/main/NotificationPage';
+import MarinaTOR from './pages/main/MarinaTOR';
 
-import { getStoredUser, login, logout } from './services/authService'
+import { getStoredUser, login, logout } from './services/authService';
 
 class App extends Component {
-<<<<<<< HEAD
     constructor(props) {
-        super(props)
-=======
-  constructor(props) {
-    super(props)
+        super(props);
 
-    const user = getStoredUser()
->>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
-
-        const user = getStoredUser()
+        const user = getStoredUser();
 
         this.state = {
             user,
             isAuthenticated: Boolean(user),
-        }
+        };
     }
 
-<<<<<<< HEAD
     handleLogin = async (credentials) => {
-        const user = await login(credentials)
+        const user = await login(credentials);
 
         this.setState({
             user,
             isAuthenticated: true,
-        })
-=======
-  handleLogin = async (credentials) => {
-    const user = await login(credentials)
+        });
 
-    this.setState({
-      user,
-      isAuthenticated: true,
-    })
+        return user;
+    };
 
-    return user
-  }
-
-  handleLogout = () => {
-    logout()
-
-    this.setState({
-      user: null,
-      isAuthenticated: false,
-    })
-  }
->>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
-
-        return user
-    }
-
-<<<<<<< HEAD
     handleLogout = () => {
-        logout()
+        logout();
 
         this.setState({
             user: null,
             isAuthenticated: false,
-        })
-    }
+        });
+    };
 
     renderMainPage = (PageComponent) => {
-        const { user } = this.state
-        return <PageComponent user={user} />
-    }
+        const { user } = this.state;
+        return <PageComponent user={user} />;
+    };
 
     render() {
-        const { user, isAuthenticated } = this.state
+        const { user, isAuthenticated } = this.state;
 
         const mainLayout = (
             <MainLayoutPage
@@ -86,12 +56,11 @@ class App extends Component {
                 isAuthenticated={isAuthenticated}
                 onLogout={this.handleLogout}
             />
-        )
+        );
 
         return (
             <BrowserRouter>
                 <Routes>
-
                     <Route
                         path="/login"
                         element={
@@ -103,7 +72,6 @@ class App extends Component {
                     />
 
                     <Route element={mainLayout}>
-
                         <Route
                             path="/dashboard"
                             element={this.renderMainPage(DashboardPage)}
@@ -123,7 +91,6 @@ class App extends Component {
                             path="/marina-tor"
                             element={this.renderMainPage(MarinaTOR)}
                         />
-
                     </Route>
 
                     <Route
@@ -140,81 +107,10 @@ class App extends Component {
                         path="*"
                         element={<Navigate to="/" replace />}
                     />
-
                 </Routes>
             </BrowserRouter>
-        )
+        );
     }
-=======
-  render() {
-    const { user, isAuthenticated } = this.state
-
-    const mainLayout = (
-      <MainLayoutPage
-        user={user}
-        isAuthenticated={isAuthenticated}
-        onLogout={this.handleLogout}
-      />
-    )
-
-    return (
-      <BrowserRouter>
-        <Routes>
-
-          <Route
-            path="/login"
-            element={
-              <LoginPage
-                isAuthenticated={isAuthenticated}
-                onLogin={this.handleLogin}
-              />
-            }
-          />
-
-          <Route element={mainLayout}>
-
-            <Route
-              path="/dashboard"
-              element={this.renderMainPage(DashboardPage)}
-            />
-
-            <Route
-              path="/account"
-              element={this.renderMainPage(AccountPage)}
-            />
-
-            <Route
-              path="/notifications"
-              element={this.renderMainPage(NotificationPage)}
-            />
-
-            <Route
-              path="/marina-tor"
-              element={this.renderMainPage(MarinaTOR)}
-            />
-
-          </Route>
-
-          <Route
-            path="/"
-            element={
-              <Navigate
-                to={isAuthenticated ? '/dashboard' : '/login'}
-                replace
-              />
-            }
-          />
-
-          <Route
-            path="*"
-            element={<Navigate to="/" replace />}
-          />
-
-        </Routes>
-      </BrowserRouter>
-    )
-  }
->>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
 }
 
-export default App
+export default App;
