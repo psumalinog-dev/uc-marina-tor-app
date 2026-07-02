@@ -169,9 +169,7 @@ class AdminLayout extends Component {
         <aside className="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
           <div className="sidebar-brand">
             <Link to="/dashboard" className="brand-link">
-              <span className="brand-image opacity-75 shadow rounded bg-primary d-inline-flex align-items-center justify-content-center text-white fw-bold">
-                MT
-              </span>
+              <img src="https://lmportal.uc.edu.ph/static/media/uc-logo-bg-160x83.c24343b851e5b064daf9.png" alt="UCLM" className="brand-image opacity-75 shadow rounded bg-white d-inline-flex align-items-center justify-content-center" />
               <span className="brand-text fw-light">Marina Tor</span>
             </Link>
           </div>

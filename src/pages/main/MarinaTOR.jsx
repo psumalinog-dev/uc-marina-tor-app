@@ -103,7 +103,10 @@ export default function MarinaTOR() {
                         </h4>
 
                         <p>
-                            Telephone no: 345-6666 local 6233/6254/6255
+                            Telephone no: 345-6666 local 6253/6254/6255 email:
+                            <i>
+                                <u> uclmregistrar@gmail.com</u>
+                            </i>
                         </p>
 
                         <h3>
@@ -164,6 +167,9 @@ export default function MarinaTOR() {
                             </td>
 
                             <td className="small-value-cell"></td>
+                        </tr>
+                        <tr>
+                            <th colSpan="6">EDUCATIONAL DATA</th>
                         </tr>
 
                         <tr>
