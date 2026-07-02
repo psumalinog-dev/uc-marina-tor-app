@@ -33,11 +33,20 @@ class NotificationPage extends Component {
             },
         ]
 
+<<<<<<< HEAD
         const unreadCount = notifications.filter((item) => item.unread).length
 
         return (
             <>
                 {/* HEADER */}
+=======
+        const unreadCount = notifications.filter(
+            (item) => item.unread
+        ).length
+
+        return (
+            <>
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
                 <div className="uc-header mb-4">
                     <div>
                         <h2>Notifications Center</h2>
@@ -50,7 +59,10 @@ class NotificationPage extends Component {
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 {/* SUMMARY CARD */}
+=======
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
                 <div className="row mb-4">
                     <div className="col-md-4">
                         <div className="summary-card">
@@ -64,7 +76,10 @@ class NotificationPage extends Component {
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 {/* NOTIFICATION LIST */}
+=======
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
                 <div className="card notification-card">
                     <div className="card-header uc-card-header">
                         <h3>Recent Notifications</h3>
@@ -77,7 +92,13 @@ class NotificationPage extends Component {
                                 className={`notification-item ${notification.unread ? 'unread' : ''
                                     }`}
                             >
+<<<<<<< HEAD
                                 <div className={`icon-box bg-${notification.type}`}>
+=======
+                                <div
+                                    className={`icon-box bg-${notification.type}`}
+                                >
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
                                     <i className={notification.icon}></i>
                                 </div>
 

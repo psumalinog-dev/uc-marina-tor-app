@@ -1,4 +1,5 @@
 .uc-header {
+<<<<<<< HEAD
     background: linear-gradient(135deg, #003DA5, #0057D9);
     color: white;
     padding: 30px;
@@ -7,10 +8,21 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0,0,0,.15);
+=======
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    margin-bottom: 25px;
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
 }
 
     .uc-header h2 {
         margin: 0;
+<<<<<<< HEAD
         font-weight: 700;
         color: white !important;
     }
@@ -29,10 +41,28 @@
     background: #FFD100;
     border-radius: 50%;
     color: #003DA5;
+=======
+        color: #003DA5;
+        font-weight: 600;
+    }
+
+    .uc-header p {
+        margin: 5px 0 0;
+        color: #6c757d;
+    }
+
+.notification-counter {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #003DA5;
+    color: white;
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     font-size: 28px;
     font-weight: bold;
 }
@@ -74,11 +104,66 @@
 .uc-card-header {
     background: #003DA5;
     color: white;
+=======
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.summary-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+}
+
+    .summary-card i {
+        font-size: 35px;
+        color: #003DA5;
+    }
+
+    .summary-card h5 {
+        margin: 0;
+        color: #6c757d;
+        font-size: 15px;
+    }
+
+    .summary-card h2 {
+        margin: 5px 0 0;
+        color: #212529;
+        font-weight: 700;
+    }
+
+.notification-card {
+    border: none;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    overflow: hidden;
+}
+.summary-card,
+.notification-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover,
+.notification-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,.12);
+}
+
+.uc-card-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e9ecef;
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
     padding: 20px;
 }
 
     .uc-card-header h3 {
         margin: 0;
+<<<<<<< HEAD
         color: white !important;
     }
 
@@ -93,11 +178,32 @@
     background: #ffffff;
 }
 
+=======
+        color: #003DA5;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+.notification-item {
+    display: flex;
+    gap: 18px;
+    padding: 20px;
+    border-bottom: 1px solid #f1f1f1;
+    transition: background .2s ease;
+    cursor: pointer;
+}
+
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
     .notification-item:hover {
         background: #f8f9fa;
     }
 
     .notification-item.unread {
+<<<<<<< HEAD
         background: #eef5ff;
     }
 
@@ -117,6 +223,24 @@
 
 /* CONTENT */
 
+=======
+        border-left: 4px solid #003DA5;
+        background: #fafcff;
+    }
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
 .notification-content {
     flex: 1;
 }
@@ -129,6 +253,7 @@
 
     .notification-top h5 {
         margin: 0;
+<<<<<<< HEAD
         font-weight: 700;
         color: #003DA5 !important;
     }
@@ -136,10 +261,20 @@
     .notification-top small {
         color: #6c757d !important;
         font-weight: 500;
+=======
+        color: #212529;
+        font-weight: 600;
+        word-break: break-word;
+    }
+
+    .notification-top small {
+        color: #6c757d;
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
     }
 
 .notification-content p {
     margin-top: 8px;
+<<<<<<< HEAD
     color: #495057 !important;
     font-size: 15px;
     line-height: 1.5;
@@ -159,6 +294,22 @@
 
 /* ICON COLORS */
 
+=======
+    margin-bottom: 0;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.new-badge {
+    background: #003DA5;
+    color: white;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+}
+
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
 .bg-primary {
     background: #003DA5;
 }
@@ -170,6 +321,7 @@
 .bg-success {
     background: #28a745;
 }
+<<<<<<< HEAD
 
 /* FORCE READABLE TEXT */
 
@@ -198,6 +350,33 @@
         flex-direction: column;
         gap: 20px;
         text-align: center;
+=======
+.notification-item {
+    animation: fadeIn .3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .uc-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .notification-item {
+        flex-direction: column;
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
     }
 
     .notification-top {
@@ -206,7 +385,26 @@
         gap: 5px;
     }
 
+<<<<<<< HEAD
     .notification-item {
         flex-direction: column;
     }
 }
+=======
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .icon-box {
+        margin: 0 auto;
+    }
+
+    .notification-counter {
+        width: 55px;
+        height: 55px;
+        font-size: 18px;
+    }
+}
+
+>>>>>>> 9fe70a0 (Refining Marina TOR & Export PDF)
