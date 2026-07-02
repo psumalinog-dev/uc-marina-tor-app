@@ -12,7 +12,6 @@ class LoginPage extends Component {
       error: '',
       isSubmitting: false,
     }
-  }
 
   componentDidMount() {
     setBodyClass('login-page bg-body-secondary')
@@ -41,60 +40,133 @@ class LoginPage extends Component {
       return
     }
 
-    this.setState({ isSubmitting: true, error: '' })
-
-    try {
-      await onLogin({ email: email.trim(), password })
-    } catch (err) {
-      this.setState({
-        error: err.message || 'Login failed. Please try again.',
-        isSubmitting: false,
-      })
-    }
-  }
-
-  render() {
-    const { isAuthenticated } = this.props
-    const { email, password, error, isSubmitting } = this.state
-
-    if (isAuthenticated) {
-      return <Navigate to="/dashboard" replace />
+    componentWillUnmount() {
+        setBodyClass('')
     }
 
-    return (
-      <div className="login-box">
-        <div className="card card-outline card-primary">
-          <div className="card-header">
-            <div className="text-center">
-              <h1 className="mb-0">
-                <b>Marina</b> TOR
-              </h1>
-            </div>
-          </div>
-          <div className="card-body login-card-body">
-            <p className="login-box-msg">Sign in to start your session</p>
+    handleChange = (event) => {
+        const { name, value } = event.target
+        this.setState({ [name]: value, error: '' })
+    }
 
-            <form onSubmit={this.handleSubmit}>
-              {error && (
-                <div className="alert alert-danger py-2" role="alert">
-                  {error}
-                </div>
-              )}
+    handleSubmit = async (event) => {
+        event.preventDefault()
+        const { email, password } = this.state
+        const { onLogin } = this.props
 
-              <div className="input-group mb-3">
-                <div className="form-floating">
-                  <input
-                    id="loginEmail"
-                    name="email"
-                    type="email"
-                    className="form-control"
-                    placeholder="Email"
-                    autoComplete="email"
-                    value={email}
-                    onChange={this.handleChange}
-                    disabled={isSubmitting}
-                  />
-                  <label htmlFor="loginEmail">Email</label>
+        if (!email.trim() || !password.trim()) {
+            this.setState({ error: 'Please enter both email and password.' })
+            return
+        }
+
+        this.setState({ isSubmitting: true, error: '' })
+
+        try {
+            await onLogin({ email: email.trim(), password })
+        } catch (err) {
+            this.setState({
+                error: err.message || 'Login failed. Please try again.',
+                isSubmitting: false,
+            })
+        }
+    }
+
+    render() {
+        const { isAuthenticated } = this.props
+        const { email, password, error, isSubmitting } = this.state
+
+        if (isAuthenticated) {
+            return <Navigate to="/dashboard" replace />
+        }
+
+        return (
+            <div className="login-box">
+                <div className="card card-outline card-primary">
+                    <div className="card-header">
+                        <div className="text-center">
+                            <h1 className="mb-0">
+                                <b>Marina</b> TOR
+                            </h1>
+                        </div>
+                    </div>
+                    <div className="card-body login-card-body">
+                        <p className="login-box-msg">Sign in to start your session</p>
+
+                        <form onSubmit={this.handleSubmit}>
+                            {error && (
+                                <div className="alert alert-danger py-2" role="alert">
+                                    {error}
+                                </div>
+                            )}
+
+                            <div className="input-group mb-3">
+                                <div className="form-floating">
+                                    <input
+                                        id="loginEmail"
+                                        name="email"
+                                        type="email"
+                                        className="form-control"
+                                        placeholder="Email"
+                                        autoComplete="email"
+                                        value={email}
+                                        onChange={this.handleChange}
+                                        disabled={isSubmitting}
+                                    />
+                                    <label htmlFor="loginEmail">Email</label>
+                                </div>
+                                <div className="input-group-text">
+                                    <span className="bi bi-envelope"></span>
+                                </div>
+                            </div>
+
+                            <div className="input-group mb-3">
+                                <div className="form-floating">
+                                    <input
+                                        id="loginPassword"
+                                        name="password"
+                                        type="password"
+                                        className="form-control"
+                                        placeholder="Password"
+                                        autoComplete="current-password"
+                                        value={password}
+                                        onChange={this.handleChange}
+                                        disabled={isSubmitting}
+                                    />
+                                    <label htmlFor="loginPassword">Password</label>
+                                </div>
+                                <div className="input-group-text">
+                                    <span className="bi bi-lock-fill"></span>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-8 d-inline-flex align-items-center">
+                                    <div className="form-check">
+                                        <input
+                                            className="form-check-input"
+                                            type="checkbox"
+                                            id="rememberMe"
+                                            disabled={isSubmitting}
+                                        />
+                                        <label className="form-check-label" htmlFor="rememberMe">
+                                            Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="d-grid gap-2">
+                                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                                            {isSubmitting ? 'Signing in…' : 'Sign In'}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <p className="text-muted text-center small mt-4 mb-0">
+                            Demo: <code>admin@example.com</code> / <code>password123</code>
+                        </p>
+                    </div>
                 </div>
                 <div className="input-group-text">
                   <span className="bi bi-envelope"></span>
