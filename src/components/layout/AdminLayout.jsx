@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import './AdminLayout.css'
 import {
   destroySidebarScrollbars,
   initColorModeToggle,
@@ -9,11 +10,11 @@ import {
 import { getMainPageMeta, MAIN_NAV_ITEMS } from '../../pages/main/mainRoutes'
 
 class AdminLayout extends Component {
-  componentDidMount() {
-    setBodyClass('layout-fixed sidebar-expand-lg bg-body-tertiary')
-    initSidebarScrollbars()
-    initColorModeToggle()
-  }
+   componentDidMount() {
+     setBodyClass('layout-fixed sidebar-expand-lg')
+     initSidebarScrollbars()
+     initColorModeToggle()
+    }
 
   componentDidUpdate() {
     initSidebarScrollbars()
@@ -35,7 +36,7 @@ class AdminLayout extends Component {
 
     return (
       <div className="app-wrapper">
-        <nav className="app-header navbar navbar-expand bg-body">
+         <nav className="app-header navbar navbar-expand uc-navbar">
           <div className="container-fluid">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -196,7 +197,7 @@ class AdminLayout extends Component {
           </div>
         </aside>
 
-        <main className="app-main">
+         <main className="app-main uc-main">
           <div className="app-content-header">
             <div className="container-fluid">
               <div className="row">
@@ -222,7 +223,7 @@ class AdminLayout extends Component {
           </div>
         </main>
 
-        <footer className="app-footer">
+         <footer className="app-footer uc-footer">
           <div className="float-end d-none d-sm-inline">Marina Tor App</div>
           <strong>
             Copyright &copy; 2026&nbsp;
