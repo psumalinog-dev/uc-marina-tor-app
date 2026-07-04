@@ -169,8 +169,10 @@ class AdminLayout extends Component {
         <aside className="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
           <div className="sidebar-brand">
             <Link to="/dashboard" className="brand-link">
-              <img src="https://lmportal.uc.edu.ph/static/media/uc-logo-bg-160x83.c24343b851e5b064daf9.png" alt="UCLM" className="brand-image opacity-75 shadow rounded bg-white d-inline-flex align-items-center justify-content-center" />
-              <span className="brand-text fw-light">Marina Tor</span>
+                        <img src="https://i.postimg.cc/ncmTv2S9/LOGOUC.png" alt="UCLM" className="brand-image opacity-95 d-inline-flex align-items-center justify-content-center" />
+              <span className="brand-text">
+                Marina <span className="brand-tor">TOR</span>
+              </span>
             </Link>
           </div>
 
@@ -224,7 +226,7 @@ class AdminLayout extends Component {
         </main>
 
          <footer className="app-footer uc-footer">
-          <div className="float-end d-none d-sm-inline">Marina Tor App</div>
+          <div className="float-end d-none d-sm-inline">Marina TOR App</div>
           <strong>
             Copyright &copy; 2026&nbsp;
             <a href="https://adminlte.io" className="text-decoration-none">
