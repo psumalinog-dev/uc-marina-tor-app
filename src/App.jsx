@@ -24,100 +24,6 @@ class App extends Component {
         }
     }
 
-    handleLogin = async (credentials) => {
-        const user = await login(credentials)
-
-        this.setState({
-            user,
-            isAuthenticated: true,
-        })
-
-        return user
-    }
-
-    handleLogout = () => {
-        logout()
-
-        this.setState({
-            user: null,
-            isAuthenticated: false,
-        })
-    }
-
-    renderMainPage = (PageComponent) => {
-        const { user } = this.state
-        return <PageComponent user={user} />
-    }
-
-    render() {
-        const { user, isAuthenticated } = this.state
-
-        const mainLayout = (
-            <MainLayoutPage
-                user={user}
-                isAuthenticated={isAuthenticated}
-                onLogout={this.handleLogout}
-            />
-        )
-
-        return (
-            <BrowserRouter>
-                <Routes>
-
-                    <Route
-                        path="/login"
-                        element={
-                            <LoginPage
-                                isAuthenticated={isAuthenticated}
-                                onLogin={this.handleLogin}
-                            />
-                        }
-                    />
-
-                    <Route element={mainLayout}>
-
-                        <Route
-                            path="/dashboard"
-                            element={this.renderMainPage(DashboardPage)}
-                        />
-
-                        <Route
-                            path="/account"
-                            element={this.renderMainPage(AccountPage)}
-                        />
-
-                        <Route
-                            path="/notifications"
-                            element={this.renderMainPage(NotificationPage)}
-                        />
-
-                        <Route
-                            path="/marina-tor"
-                            element={this.renderMainPage(MarinaTOR)}
-                        />
-
-                    </Route>
-
-                    <Route
-                        path="/"
-                        element={
-                            <Navigate
-                                to={isAuthenticated ? '/dashboard' : '/login'}
-                                replace
-                            />
-                        }
-                    />
-
-                    <Route
-                        path="*"
-                        element={<Navigate to="/" replace />}
-                    />
-
-                </Routes>
-            </BrowserRouter>
-        )
-    }
-  }
 
   handleLogin = async (credentials) => {
     const user = await login(credentials)
@@ -162,6 +68,7 @@ class App extends Component {
             <Route path="/dashboard" element={this.renderMainPage(DashboardPage)} />
             <Route path="/account" element={this.renderMainPage(AccountPage)} />
             <Route path="/notifications" element={this.renderMainPage(NotificationPage)} />
+            <Route path="/marina-tor" element={this.renderMainPage(MarinaTOR)} />
           </Route>
 
           <Route
