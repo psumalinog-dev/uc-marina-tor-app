@@ -49,14 +49,140 @@ body,
     background: #002147 !important;
 }
 
-.brand-link {
-    background: #003DA5 !important;
-    color: white !important;
+/* Sidebar brand block */
+.sidebar-brand {
+    background: #ffffff !important;
+    border-bottom: 6px solid #003DA5;
+    padding: 0.75rem 1rem;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+/* keep the white bar dimensions but hide any part of the logo that exceeds it
+   so the bottom edge appears straight */
+.sidebar-brand {
+    overflow: hidden;
 }
 
-    .brand-link:hover {
-        color: #FFD100 !important;
+/* ensure the brand area does not clip the image */
+.sidebar-brand {
+    overflow: visible;
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0rem; /* reduce gap so text sits closer to logo */
+    color: #003DA5 !important;
+    width: 100%;
+}
+.brand-link {
+    position: relative;
+}
+
+.brand-link:hover {
+    color: #002147 !important;
+}
+
+/* Brand text styling */
+.brand-text {
+    font-weight: 900;
+    /* slightly larger font while keeping the white box unchanged */
+    font-size: 1.3rem;
+    color: #003DA5 !important;
+    line-height: 1;
+    margin: 0;
+    padding-right: 0.5rem;
+    font-family: Britannic Bold, sans-serif;
+}
+
+.brand-tor {
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-left: 1px;
+    letter-spacing: 0.6px;
+    font-size: 1.3rem;
+    font-family: Britannic Bold, sans-serif;
+}
+
+/* Brand image adjustments */
+.brand-image {
+    width: 50px;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border-radius: 0; /* keep logo edges straight */
+}
+
+/* Attempt to blend image white background with underlying color when possible */
+.brand-image {
+    mix-blend-mode: unset;
+    opacity: 1 !important;
+    object-fit: contain;
+    
+}
+
+/* Ensure brand text is visible and not clipped */
+.sidebar-brand,
+.sidebar-brand .brand-link {
+    overflow: visible;
+}
+
+.brand-link {
+    text-decoration: none;
+}
+
+.brand-text {
+    display: inline-block;
+    white-space: nowrap;
+    color: #002147 !important;
+    align-self: center;
+}
+.brand-text { margin-left: 0.25rem; }
+.brand-text {
+    z-index: 2; /* ensure text sits above the image if overlap happens */
+}
+
+/* increase logo size slightly to match provided image */
+.brand-image {
+    /* increase logo size but constrain to white box height */
+    width: auto;
+    max-height: 72px; /* keep inside the brand box */
+    height: auto;
+    opacity: 1 !important;
+    mix-blend-mode: unset;
+    object-fit: contain;
+}
+
+/* stronger selector to override any other helpers (index.css) */
+.sidebar-brand .brand-image {
+    width: auto !important;
+    max-height: 45px !important; /* constrain to white bar height so edge is straight */
+    height: auto !important;
+    display: block;
+    margin-right: 0.5rem;
+}
+
+/* Responsive: scale down on small screens */
+@media (max-width: 768px) {
+    .sidebar-brand {
+        height: auto;
+        padding: 0.5rem 0.75rem;
     }
+
+    .brand-image {
+        width: 80px;
+    }
+
+    .brand-text {
+        font-size: 1.35rem;
+    }
+
+    .brand-tor {
+        font-size: 1.15rem;
+    }
+}
 
 .nav-sidebar .nav-link {
     color: #d8e2ff !important;

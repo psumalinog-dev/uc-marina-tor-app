@@ -158,6 +158,7 @@ class App extends Component {
             <Route path="/dashboard" element={this.renderMainPage(DashboardPage)} />
             <Route path="/account" element={this.renderMainPage(AccountPage)} />
             <Route path="/notifications" element={this.renderMainPage(NotificationPage)} />
+            <Route path="/marina-tor" element={this.renderMainPage(MarinaTOR)} />
           </Route>
 
           <Route
