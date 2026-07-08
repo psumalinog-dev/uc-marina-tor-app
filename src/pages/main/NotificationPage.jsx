@@ -1,5 +1,5 @@
-import { Component } from 'react'
-import './NotificationPage.css'
+import { Component } from 'react';
+import './NotificationPage.css';
 
 class NotificationPage extends Component {
     render() {
@@ -31,13 +31,14 @@ class NotificationPage extends Component {
                 icon: 'bi bi-check-circle',
                 unread: false,
             },
-        ]
+        ];
 
-        const unreadCount = notifications.filter((item) => item.unread).length
+        const unreadCount = notifications.filter(
+            (item) => item.unread
+        ).length;
 
         return (
             <>
-                {/* HEADER */}
                 <div className="uc-header mb-4">
                     <div>
                         <h2>Notifications Center</h2>
@@ -50,7 +51,6 @@ class NotificationPage extends Component {
                     </div>
                 </div>
 
-                {/* SUMMARY CARD */}
                 <div className="row mb-4">
                     <div className="col-md-4">
                         <div className="summary-card">
@@ -64,7 +64,6 @@ class NotificationPage extends Component {
                     </div>
                 </div>
 
-                {/* NOTIFICATION LIST */}
                 <div className="card notification-card">
                     <div className="card-header uc-card-header">
                         <h3>Recent Notifications</h3>
@@ -77,7 +76,9 @@ class NotificationPage extends Component {
                                 className={`notification-item ${notification.unread ? 'unread' : ''
                                     }`}
                             >
-                                <div className={`icon-box bg-${notification.type}`}>
+                                <div
+                                    className={`icon-box bg-${notification.type}`}
+                                >
                                     <i className={notification.icon}></i>
                                 </div>
 
@@ -103,8 +104,8 @@ class NotificationPage extends Component {
                     </div>
                 </div>
             </>
-        )
+        );
     }
 }
 
-export default NotificationPage
+export default NotificationPage;

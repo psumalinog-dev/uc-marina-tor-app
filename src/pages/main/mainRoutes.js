@@ -6,7 +6,6 @@ export const MAIN_NAV_ITEMS = [
         title: 'Dashboard',
         breadcrumb: 'Dashboard',
     },
-
     {
         path: '/account',
         label: 'Account',
@@ -14,7 +13,6 @@ export const MAIN_NAV_ITEMS = [
         title: 'Account',
         breadcrumb: 'Account',
     },
-
     {
         path: '/notifications',
         label: 'Notifications',
@@ -22,8 +20,6 @@ export const MAIN_NAV_ITEMS = [
         title: 'Notifications',
         breadcrumb: 'Notifications',
     },
-
-  
     {
         path: '/marina-tor',
         label: 'Marina TOR',
@@ -31,13 +27,17 @@ export const MAIN_NAV_ITEMS = [
         title: 'Marina TOR',
         breadcrumb: 'Marina TOR',
     },
-]
+];
 
 export function getMainPageMeta(pathname) {
-    const match = MAIN_NAV_ITEMS.find((item) => item.path === pathname)
+    const match = MAIN_NAV_ITEMS.find(
+        (item) => item.path === pathname
+    );
 
-    return match || {
-        title: 'Dashboard',
-        breadcrumb: 'Dashboard',
-    }
+    return (
+        match || {
+            title: 'Dashboard',
+            breadcrumb: 'Dashboard',
+        }
+    );
 }

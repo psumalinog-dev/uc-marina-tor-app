@@ -1,68 +1,76 @@
 import { Component } from 'react'
+import './DashboardPage.css'
 
 class DashboardPage extends Component {
-  render() {
-    const { user } = this.props
+    state = {
+        statistics: {
+            totalStudents: 1250,
+            totalUsers: 15,
+            totalTorRequests: 87,
+            releasedTorRequests: 75,
+        }
+    }
 
-    const stats = [
-      {
-        value: '12',
-        label: 'Active projects',
-        bgClass: 'text-bg-primary',
-        iconClass: 'bi bi-kanban',
-        footerClass: 'link-light link-underline-opacity-0 link-underline-opacity-50-hover',
-      },
-      {
-        value: '48',
-        label: 'Open tasks',
-        bgClass: 'text-bg-success',
-        iconClass: 'bi bi-list-check',
-        footerClass: 'link-light link-underline-opacity-0 link-underline-opacity-50-hover',
-      },
-      {
-        value: '5',
-        label: 'Unread messages',
-        bgClass: 'text-bg-warning',
-        iconClass: 'bi bi-envelope',
-        footerClass: 'link-dark link-underline-opacity-0 link-underline-opacity-50-hover',
-      },
-    ]
+    render() {
+        const { statistics } = this.state
 
-    return (
-      <>
-        <div className="row mb-4">
-          <div className="col-12">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title mb-1">Welcome back</h5>
-                <p className="card-text text-muted mb-0">
-                  Hello, <strong>{user?.name || user?.email}</strong>. You are signed in to Marina
-                  Tor App.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="row">
-          {stats.map((stat) => (
-            <div key={stat.label} className="col-lg-4 col-md-6 col-12">
-              <div className={`small-box ${stat.bgClass}`}>
-                <div className="inner">
-                  <h3>{stat.value}</h3>
-                  <p>{stat.label}</p>
+        return (
+            <>
+                <div className="dashboard-title mb-4">
+                    <h2>Dashboard Overview</h2>
+                    <p>Welcome to Marina TOR Management System</p>
                 </div>
-                <i className={`small-box-icon ${stat.iconClass}`}></i>
-                <a href="#" className={`small-box-footer ${stat.footerClass}`}>
-                  More info <i className="bi bi-link-45deg"></i>
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </>
-    )
-  }
+
+                <div className="row">
+
+                    <div className="col-lg-3 col-md-6 mb-4">
+                        <div className="stat-card">
+                            <div>
+                                <h6>Total Students</h6>
+                                <h2>{statistics.totalStudents}</h2>
+                            </div>
+
+                            <i className="bi bi-people stat-icon"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-3 col-md-6 mb-4">
+                        <div className="stat-card">
+                            <div>
+                                <h6>Total Staff</h6>
+                                <h2>{statistics.totalUsers}</h2>
+                            </div>
+
+                            <i className="bi bi-person-badge stat-icon"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-3 col-md-6 mb-4">
+                        <div className="stat-card">
+                            <div>
+                                <h6>TOR Requests</h6>
+                                <h2>{statistics.totalTorRequests}</h2>
+                            </div>
+
+                            <i className="bi bi-file-earmark-text stat-icon"></i>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-3 col-md-6 mb-4">
+                        <div className="stat-card">
+                            <div>
+                                <h6>Released TOR</h6>
+                                <h2>{statistics.releasedTorRequests}</h2>
+                            </div>
+
+                            <i className="bi bi-check-circle stat-icon"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </>
+        )
+    }
 }
 
 export default DashboardPage

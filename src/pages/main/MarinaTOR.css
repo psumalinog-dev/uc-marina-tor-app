@@ -106,8 +106,16 @@
     width: 35%;
     min-width: 180px;
     font-weight: 600;
-    vertical-align: top;
+    vertical-align: middle;
     padding: 8px;
+    line-height: 1.5;
+}
+
+.sub-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 4px;
 }
 
 .large-value-cell {
@@ -126,6 +134,52 @@
 .small-value-cell {
     width: 28%;
     height: 50px;
+    overflow: hidden;
+}
+
+.tor-select {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.tor-select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.tor-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #000;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.tor-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.tor-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    padding: 2px;
+}
+
+.custom-citizenship {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #000;
 }
 
 /* TABLE BORDERS */
@@ -187,6 +241,92 @@
     margin-bottom: 10px;
 }
 
+.year-select {
+    width: 120px;
+    padding: 4px;
+    border: none;
+    background: transparent;
+    text-align: center;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+}
+
+.year-select option {
+    background-color: #fff;
+    color: #000;
+}
+
+.summer-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.summer-toggle label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.summer-button-row {
+    text-align: center;
+    padding: 10px;
+}
+
+.summer-btn {
+    padding: 8px 16px;
+    background: #0d6efd;
+    color: white !important;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.summer-btn:hover {
+    background: #0b5ed7;
+}
+
+.total-units-input {
+    width: 60px;
+    padding: 4px 6px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.total-units-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+}
+
+.formatted-date {
+    font-size: 14px;
+    font-style: italic;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+.full-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.full-input::placeholder {
+    color: #999;
+}
 @media print {
 
     .breadcrumb,
@@ -198,5 +338,14 @@
     .tor-paper {
         box-shadow: none;
         width: 100%;
+    }
+
+    table {
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
     }
 }
