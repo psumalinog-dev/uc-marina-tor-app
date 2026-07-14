@@ -7,11 +7,25 @@ export const MAIN_NAV_ITEMS = [
         breadcrumb: 'Dashboard',
     },
     {
-        path: '/account',
-        label: 'Account',
-        icon: 'bi bi-person',
-        title: 'Account',
-        breadcrumb: 'Account',
+        path: '/students',
+        label: 'Student Management',
+        icon: 'bi bi-people-fill',
+        title: 'Student Management',
+        breadcrumb: 'Student Management',
+    },
+    {
+        path: '/tor-requests',
+        label: 'TOR Requests',
+        icon: 'bi bi-file-earmark-check',
+        title: 'TOR Requests',
+        breadcrumb: 'TOR Requests',
+    },
+    {
+        path: '/marina-tor',
+        label: 'Marina TOR',
+        icon: 'bi bi-file-earmark-text',
+        title: 'Marina TOR',
+        breadcrumb: 'Marina TOR',
     },
     {
         path: '/notifications',
@@ -21,11 +35,11 @@ export const MAIN_NAV_ITEMS = [
         breadcrumb: 'Notifications',
     },
     {
-        path: '/marina-tor',
-        label: 'Marina TOR',
-        icon: 'bi bi-file-earmark-text',
-        title: 'Marina TOR',
-        breadcrumb: 'Marina TOR',
+        path: '/account',
+        label: 'Account',
+        icon: 'bi bi-person-circle',
+        title: 'Account',
+        breadcrumb: 'Account',
     },
 ];
 

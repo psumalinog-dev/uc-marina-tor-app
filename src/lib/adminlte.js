@@ -7,13 +7,13 @@ let sidebarScrollbarsInstance = null
 let colorModeInitialized = false
 
 export function initAdminLteTheme() {
-  let stored = null
-
-  try {
-    stored = localStorage.getItem(THEME_STORAGE_KEY)
-  } catch {
-    stored = null
-  }
+  const stored = (() => {
+    try {
+        return localStorage.getItem(THEME_STORAGE_KEY);
+    } catch {
+        return null;
+    }
+})();
 
   const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
   let resolved = 'light'

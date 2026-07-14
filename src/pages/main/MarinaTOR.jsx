@@ -1,5 +1,6 @@
 import "./MarinaTOR.css";
 import { useState, useRef } from "react";
+import { getStudentByIdNumber } from "../../services/studentService";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
@@ -97,24 +98,70 @@ function SummerBlock() {
 
 export default function MarinaTOR() {
 
+    const [studentName, setStudentName] = useState("");
     const [citizenship, setCitizenship] = useState("");
     const [otherCitizenship, setOtherCitizenship] = useState("");
     const [degree, setDegree] = useState("");
-    const [showSummer1, setShowSummer1] = useState(false);
-    const [showSummer2, setShowSummer2] = useState(false);
-    const [showSummer3, setShowSummer3] = useState(false);
-    const [showSummer4, setShowSummer4] = useState(false);
-    const [unitsPresented, setUnitsPresented] = useState("");
-    const [unitsRequired, setUnitsRequired] = useState("");
     const [birthDate, setBirthDate] = useState("");
-    const [studentName, setStudentName] = useState("");
     const [studentNumber, setStudentNumber] = useState("");
     const [placeOfBirth, setPlaceOfBirth] = useState("");
     const [graduationDate, setGraduationDate] = useState("");
     const [address, setAddress] = useState("");
     const [elementarySchool, setElementarySchool] = useState("");
     const [secondarySchool, setSecondarySchool] = useState("");
+    const [showSummer1, setShowSummer1] = useState(false);
+    const [showSummer2, setShowSummer2] = useState(false);
+    const [showSummer3, setShowSummer3] = useState(false);
+    const [showSummer4, setShowSummer4] = useState(false);
+    const [unitsPresented, setUnitsPresented] = useState("");
+    const [unitsRequired, setUnitsRequired] = useState("");
     const torRef = useRef();
+    const searchStudentByIdNumber = async () => {
+
+    if (!studentNumber.trim())
+        return;
+
+    try {
+
+        const student =
+            await getStudentByIdNumber(studentNumber);
+
+        if (!student) {
+
+            alert("Student not found.");
+
+            return;
+        }
+
+        setStudentName(
+            `${student.lastName}, ${student.firstName} ${student.middleName}`
+        );
+
+        setPlaceOfBirth(student.birthPlace);
+
+        setCitizenship(student.citizenship);
+
+        setAddress(student.address);
+
+        setDegree(student.degree);
+
+        setGraduationDate(student.graduationDate);
+
+        setElementarySchool(student.primaryEsc);
+
+        setSecondarySchool(student.secondaryEsc);
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        alert("Unable to retrieve student.");
+
+    }
+
+};
+
     const exportPDF = () => {
         const buttons = document.querySelectorAll(".summer-button-row");
 
@@ -329,8 +376,13 @@ export default function MarinaTOR() {
                                     type="text"
                                     className="tor-input full-input"
                                     value={studentNumber}
+                                    placeholder="Enter Student Number"
                                     onChange={(e) => setStudentNumber(e.target.value)}
-                                    placeholder="Student Number"
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            searchStudentByIdNumber();
+                                        }
+                                    }}
                                 />
                             </td>
 

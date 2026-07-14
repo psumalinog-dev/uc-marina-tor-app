@@ -6,7 +6,9 @@ import MainLayoutPage from './pages/main/MainLayoutPage';
 import DashboardPage from './pages/main/DashboardPage';
 import AccountPage from './pages/main/AccountPage';
 import NotificationPage from './pages/main/NotificationPage';
+import StudentManagement from "./pages/main/StudentManagement";
 import MarinaTOR from './pages/main/MarinaTOR';
+
 
 import { getStoredUser, login, logout } from './services/authService';
 
@@ -85,6 +87,14 @@ class App extends Component {
                         <Route
                             path="/notifications"
                             element={this.renderMainPage(NotificationPage)}
+                        />
+                        <Route
+                            path="/students"
+                            element={
+                                isAuthenticated
+                                    ? this.renderMainPage(StudentManagement)
+                                    : <Navigate to="/login" replace />
+                            }
                         />
 
                         <Route

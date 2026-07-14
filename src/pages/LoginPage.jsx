@@ -6,7 +6,7 @@ class LoginPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
+            username: '',
             password: '',
             error: '',
             isSubmitting: false,
@@ -28,18 +28,18 @@ class LoginPage extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        const { email, password } = this.state
+        const { username, password } = this.state
         const { onLogin } = this.props
 
-        if (!email.trim() || !password.trim()) {
-            this.setState({ error: 'Please enter both email and password.' })
+        if (!username.trim() || !password.trim()) {
+            this.setState({ error: 'Please enter both username and password.' })
             return
         }
 
         this.setState({ isSubmitting: true, error: '' })
 
         try {
-            await onLogin({ email: email.trim(), password })
+            await onLogin({ username: username.trim(), password })
         } catch (err) {
             this.setState({
                 error: err.message || 'Login failed. Please try again.',
@@ -50,7 +50,7 @@ class LoginPage extends Component {
 
     render() {
         const { isAuthenticated } = this.props
-        const { email, password, error, isSubmitting } = this.state
+        const { username, password, error, isSubmitting } = this.state
 
         if (isAuthenticated) {
             return <Navigate to="/dashboard" replace />
@@ -79,20 +79,20 @@ class LoginPage extends Component {
                             <div className="input-group mb-3">
                                 <div className="form-floating">
                                     <input
-                                        id="loginEmail"
-                                        name="email"
-                                        type="email"
+                                        id="loginUsername"
+                                        name="username"
+                                        type="text"
                                         className="form-control"
-                                        placeholder="Email"
-                                        autoComplete="email"
-                                        value={email}
+                                        placeholder="Username"
+                                        autoComplete="username"
+                                        value={username}
                                         onChange={this.handleChange}
                                         disabled={isSubmitting}
                                     />
-                                    <label htmlFor="loginEmail">Email</label>
+                                    <label htmlFor="loginUsername">Username</label>
                                 </div>
                                 <div className="input-group-text">
-                                    <span className="bi bi-envelope"></span>
+                                    <span className="bi bi-person-fill"></span>
                                 </div>
                             </div>
 

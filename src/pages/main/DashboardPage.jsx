@@ -1,18 +1,41 @@
-import { Component } from 'react'
-import './DashboardPage.css'
+import { Component } from "react";
+import "./DashboardPage.css";
+import { getStudents } from "../../services/studentService";
 
 class DashboardPage extends Component {
+
     state = {
         statistics: {
-            totalStudents: 1250,
-            totalUsers: 15,
-            totalTorRequests: 87,
-            releasedTorRequests: 75,
+            totalStudents: 0,
+            totalUsers: 0,
+            totalTorRequests: 0,
+            releasedTorRequests: 0
         }
+    };
+
+    componentDidMount() {
+        this.loadDashboard();
     }
 
+    loadDashboard = async () => {
+        try {
+            const students = await getStudents();
+
+            this.setState({
+                statistics: {
+                    ...this.state.statistics,
+                    totalStudents: students.length
+                }
+            });
+        }
+        catch (error) {
+            console.error(error);
+        }
+    };
+
     render() {
-        const { statistics } = this.state
+
+        const { statistics } = this.state;
 
         return (
             <>
@@ -69,8 +92,8 @@ class DashboardPage extends Component {
 
                 </div>
             </>
-        )
+        );
     }
 }
 
-export default DashboardPage
+export default DashboardPage;

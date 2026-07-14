@@ -1,37 +1,75 @@
-const DEMO_USER = {
-  email: 'admin@example.com',
-  password: 'password123',
-  name: 'Admin User',
-}
+import api from "./api";
 
-const STORAGE_KEY = 'marina-tor-auth'
+export const login = async (credentials) => {
+    const { data } = await api.post("/Login/authentication", {
+        username: credentials.username,
+        password: credentials.password
+    });
 
-export function getStoredUser() {
-  const saved = localStorage.getItem(STORAGE_KEY)
-  if (!saved) return null
+    if (data.accessToken) {
+        localStorage.setItem("token", data.accessToken);
+    }
 
-  try {
-    return JSON.parse(saved)
-  } catch {
-    localStorage.removeItem(STORAGE_KEY)
-    return null
-  }
-}
+    if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+    }
 
-export function login({ email, password }) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (email === DEMO_USER.email && password === DEMO_USER.password) {
-        const user = { email: DEMO_USER.email, name: DEMO_USER.name }
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(user))
-        resolve(user)
-      } else {
-        reject(new Error('Invalid email or password.'))
-      }
-    }, 400)
-  })
-}
+    return data.user;
+};
 
-export function logout() {
-  localStorage.removeItem(STORAGE_KEY)
-}
+export const register = async (request) => {
+    const { data } = await api.post("/Login/register", request);
+    return data;
+};
+
+export const changePassword = async (request) => {
+    const { data } = await api.post("/Login/change-password", request);
+    return data;
+};
+
+export const logout = async () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+};
+
+export const refreshToken = async (request) => {
+    const { data } = await api.post("/Login/refresh-token", request);
+
+    if (data.accessToken) {
+        localStorage.setItem("token", data.accessToken);
+    }
+
+    return data;
+};
+
+export const requestPasswordReset = async (email) => {
+    const { data } = await api.post("/Login/request-password-reset", {
+        email
+    });
+
+    return data;
+};
+
+export const verifyResetToken = async (token) => {
+    const { data } = await api.get(`/Login/verify-reset?token=${token}`);
+    return data;
+};
+
+export const resetPassword = async (token, newPassword) => {
+    const { data } = await api.post("/Login/reset-password", {
+        token,
+        newPassword
+    });
+
+    return data;
+};
+
+export const getStoredUser = () => {
+    const user = localStorage.getItem("user");
+
+    if (!user) {
+        return null;
+    }
+
+    return JSON.parse(user);
+};
