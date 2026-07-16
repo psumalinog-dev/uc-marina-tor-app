@@ -81,6 +81,7 @@ class AdminLayout extends Component {
                     </div>
                 </nav>
 
+<<<<<<< HEAD
                 <aside
                     className="app-sidebar bg-body-secondary shadow"
                     data-bs-theme="dark"
@@ -92,6 +93,17 @@ class AdminLayout extends Component {
                                 alt="UCLM"
                                 className="brand-image opacity-75 shadow rounded bg-white d-inline-flex align-items-center justify-content-center"
                             />
+=======
+        <aside className="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+          <div className="sidebar-brand">
+            <Link to="/dashboard" className="brand-link">
+                        <img src="https://i.postimg.cc/ncmTv2S9/LOGOUC.png" alt="UCLM" className="brand-image opacity-95 d-inline-flex align-items-center justify-content-center" />
+              <span className="brand-text">
+                Marina <span className="brand-tor">TOR</span>
+              </span>
+            </Link>
+          </div>
+>>>>>>> origin/develop
 
                             <span className="brand-text fw-light">
                                 Marina TOR
@@ -172,8 +184,32 @@ class AdminLayout extends Component {
                 </footer>
 
             </div>
+<<<<<<< HEAD
         );
     }
+=======
+          </div>
+
+          <div className="app-content">
+            <div className="container-fluid">{children}</div>
+          </div>
+        </main>
+
+         <footer className="app-footer uc-footer">
+          <div className="float-end d-none d-sm-inline">Marina TOR App</div>
+          <strong>
+            Copyright &copy; 2026&nbsp;
+            <a href="https://adminlte.io" className="text-decoration-none">
+              AdminLTE.io
+            </a>
+            .
+          </strong>{' '}
+          All rights reserved.
+        </footer>
+      </div>
+    )
+  }
+>>>>>>> origin/develop
 }
 
 export default AdminLayout;
