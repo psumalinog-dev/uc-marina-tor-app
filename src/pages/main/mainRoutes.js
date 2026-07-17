@@ -14,6 +14,13 @@ export const MAIN_NAV_ITEMS = [
         breadcrumb: 'Student Management',
     },
     {
+        path: '/users',
+        label: 'User Management',
+        icon: 'bi bi-person-gear',
+        title: 'User Management',
+        breadcrumb: 'User Management',
+    },
+    {
         path: '/tor-requests',
         label: 'TOR Requests',
         icon: 'bi bi-file-earmark-check',

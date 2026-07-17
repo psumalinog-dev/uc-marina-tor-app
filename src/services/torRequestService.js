@@ -1,16 +1,16 @@
 import api from "./api";
 
 export const getTorRequests = async () => {
-    const response = await api.get("/torrequests");
-    return response.data;
+    const { data } = await api.get("/TorRequests");
+    return data;
 };
 
 export const createTorRequest = async (request) => {
-    const response = await api.post("/torrequests", request);
-    return response.data;
+    const { data } = await api.post("/TorRequests", request);
+    return data;
 };
 
-export const updateTorStatus = async (request) => {
-    const response = await api.put("/torrequests", request);
-    return response.data;
+export const updateTorRequestStatus = async (id, request) => {
+    const { data } = await api.put(`/TorRequests/${id}/status`, request);
+    return data;
 };

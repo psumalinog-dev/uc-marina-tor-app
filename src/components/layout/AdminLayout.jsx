@@ -1,22 +1,22 @@
-import { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import './AdminLayout.css';
+import { Component } from "react";
+import { Link, NavLink } from "react-router-dom";
+import "./AdminLayout.css";
 
 import {
     destroySidebarScrollbars,
     initColorModeToggle,
     initSidebarScrollbars,
     setBodyClass,
-} from '../../lib/adminlte';
+} from "../../lib/adminlte";
 
 import {
     getMainPageMeta,
     MAIN_NAV_ITEMS,
-} from '../../pages/main/mainRoutes';
+} from "../../pages/main/mainRoutes";
 
 class AdminLayout extends Component {
     componentDidMount() {
-        setBodyClass('layout-fixed sidebar-expand-lg');
+        setBodyClass("layout-fixed sidebar-expand-lg");
         initSidebarScrollbars();
         initColorModeToggle();
     }
@@ -27,7 +27,7 @@ class AdminLayout extends Component {
 
     componentWillUnmount() {
         destroySidebarScrollbars();
-        setBodyClass('');
+        setBodyClass("");
     }
 
     handleLogoutClick = (event) => {
@@ -81,7 +81,6 @@ class AdminLayout extends Component {
                     </div>
                 </nav>
 
-<<<<<<< HEAD
                 <aside
                     className="app-sidebar bg-body-secondary shadow"
                     data-bs-theme="dark"
@@ -93,17 +92,6 @@ class AdminLayout extends Component {
                                 alt="UCLM"
                                 className="brand-image opacity-75 shadow rounded bg-white d-inline-flex align-items-center justify-content-center"
                             />
-=======
-        <aside className="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-          <div className="sidebar-brand">
-            <Link to="/dashboard" className="brand-link">
-                        <img src="https://i.postimg.cc/ncmTv2S9/LOGOUC.png" alt="UCLM" className="brand-image opacity-95 d-inline-flex align-items-center justify-content-center" />
-              <span className="brand-text">
-                Marina <span className="brand-tor">TOR</span>
-              </span>
-            </Link>
-          </div>
->>>>>>> origin/develop
 
                             <span className="brand-text fw-light">
                                 Marina TOR
@@ -120,7 +108,7 @@ class AdminLayout extends Component {
                                         <NavLink
                                             to={item.path}
                                             className={({ isActive }) =>
-                                                `nav-link${isActive ? ' active' : ''}`
+                                                `nav-link${isActive ? " active" : ""}`
                                             }
                                         >
                                             <i className={`nav-icon ${item.icon}`}></i>
@@ -175,7 +163,7 @@ class AdminLayout extends Component {
 
                 <footer className="app-footer uc-footer">
                     <div className="float-end d-none d-sm-inline">
-                        Marina Tor App
+                        Marina TOR App
                     </div>
 
                     <strong>
@@ -184,32 +172,8 @@ class AdminLayout extends Component {
                 </footer>
 
             </div>
-<<<<<<< HEAD
         );
     }
-=======
-          </div>
-
-          <div className="app-content">
-            <div className="container-fluid">{children}</div>
-          </div>
-        </main>
-
-         <footer className="app-footer uc-footer">
-          <div className="float-end d-none d-sm-inline">Marina TOR App</div>
-          <strong>
-            Copyright &copy; 2026&nbsp;
-            <a href="https://adminlte.io" className="text-decoration-none">
-              AdminLTE.io
-            </a>
-            .
-          </strong>{' '}
-          All rights reserved.
-        </footer>
-      </div>
-    )
-  }
->>>>>>> origin/develop
 }
 
 export default AdminLayout;

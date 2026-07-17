@@ -1,6 +1,6 @@
 import { Component } from "react";
 import "./DashboardPage.css";
-import { getStudents } from "../../services/studentService";
+import { getDashboardStatistics } from "../../services/dashboardService";
 
 class DashboardPage extends Component {
 
@@ -19,17 +19,20 @@ class DashboardPage extends Component {
 
     loadDashboard = async () => {
         try {
-            const students = await getStudents();
+
+            const statistics = await getDashboardStatistics();
 
             this.setState({
                 statistics: {
-                    ...this.state.statistics,
-                    totalStudents: students.length
+                    totalStudents: statistics.totalStudents,
+                    totalUsers: statistics.totalStaff,
+                    totalTorRequests: statistics.totalTorRequests,
+                    releasedTorRequests: statistics.totalReleasedTor
                 }
             });
-        }
-        catch (error) {
-            console.error(error);
+
+        } catch (error) {
+            console.error("Dashboard Error:", error);
         }
     };
 

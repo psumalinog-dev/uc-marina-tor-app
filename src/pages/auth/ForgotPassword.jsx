@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { requestPasswordReset } from '../services/authService'
+import { requestPasswordReset } from "../../services/authService";
 
 class ForgotPasswordPage extends Component {
   constructor(props) {

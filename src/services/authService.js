@@ -1,32 +1,35 @@
-<<<<<<< HEAD
 import api from "./api";
 
-export const login = async (credentials) => {
+const TOKEN_KEY = "token";
+const REFRESH_TOKEN_KEY = "refreshToken";
+const USER_KEY = "user";
+
+const saveToken = (token) => {
+    localStorage.setItem(TOKEN_KEY, token);
+};
+
+const saveRefreshToken = (token) => {
+    localStorage.setItem(REFRESH_TOKEN_KEY, token);
+};
+
+const saveUser = (user) => {
+    if (user) {
+        localStorage.setItem(USER_KEY, JSON.stringify(user));
+    } else {
+        localStorage.removeItem(USER_KEY);
+    }
+};
+
+export const login = async ({ username, password }) => {
     const { data } = await api.post("/Login/authentication", {
-        username: credentials.username,
-        password: credentials.password
+        username,
+        password,
     });
 
-    if (data.accessToken) {
-        localStorage.setItem("token", data.accessToken);
-    }
-=======
-const STORAGE_KEY = 'marina-tor-auth'
+    saveToken(data.accessToken);
+    saveRefreshToken(data.refreshToken);
+    saveUser(data.user);
 
-function saveUser(user) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(user))
-}
-
-export function getStoredUser() {
-  const saved = localStorage.getItem(STORAGE_KEY)
-  if (!saved) return null
->>>>>>> origin/develop
-
-    if (data.user) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-    }
-
-<<<<<<< HEAD
     return data.user;
 };
 
@@ -40,121 +43,69 @@ export const changePassword = async (request) => {
     return data;
 };
 
-export const logout = async () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+export const logout = () => {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(REFRESH_TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
 };
 
-export const refreshToken = async (request) => {
-    const { data } = await api.post("/Login/refresh-token", request);
+export const refreshToken = async () => {
+    const refreshToken = localStorage.getItem("refreshToken");
 
-    if (data.accessToken) {
-        localStorage.setItem("token", data.accessToken);
-    }
+    const { data } = await api.post("/Login/refresh-token", {
+        refreshToken,
+    });
+
+    localStorage.setItem("token", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
 
     return data;
 };
 
 export const requestPasswordReset = async (email) => {
     const { data } = await api.post("/Login/request-password-reset", {
-        email
+        email,
     });
 
     return data;
 };
 
 export const verifyResetToken = async (token) => {
-    const { data } = await api.get(`/Login/verify-reset?token=${token}`);
+    const { data } = await api.get(
+        `/Login/verify-reset?token=${encodeURIComponent(token)}`
+    );
+
     return data;
 };
 
 export const resetPassword = async (token, newPassword) => {
     const { data } = await api.post("/Login/reset-password", {
         token,
-        newPassword
+        newPassword,
     });
 
     return data;
 };
 
 export const getStoredUser = () => {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem(USER_KEY);
 
-    if (!user) {
+    if (!user || user === "undefined") {
         return null;
     }
 
-    return JSON.parse(user);
-};
-=======
-export async function login({ email, password }) {
-  try {
-    const res = await fetch('/authentication', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: email, password }),
-    })
-
-    if (res.ok) {
-      const data = await res.json()
-      const user = { email, name: (data.FirstName || '') + ' ' + (data.LastName || '') }
-      saveUser(user)
-      return user
+    try {
+        return JSON.parse(user);
+    } catch {
+        localStorage.removeItem(USER_KEY);
+        return null;
     }
+};
 
-    // If backend returned non-ok, fall through to demo fallback below
-  } catch {
-    // network or CORS error - fall back to demo account
-  }
+export const getStoredToken = () => {
+    return localStorage.getItem(TOKEN_KEY);
+};
 
-  // Demo fallback: if backend is not available or authentication failed, allow local demo credentials
-  if (email === 'admin@example.com' && password === 'password123') {
-    const user = { email: 'admin@example.com', name: 'Admin User' }
-    saveUser(user)
-    return user
-  }
-
-  throw new Error('Invalid email or password.')
-}
-
-export function logout() {
-  localStorage.removeItem(STORAGE_KEY)
-}
-
-export async function requestPasswordReset(email) {
-  const res = await fetch('/api/Login/request-password-reset', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email }),
-  })
-
-  if (!res.ok) {
-    const txt = await res.text()
-    throw new Error(txt || 'Failed to request password reset')
-  }
-
-  // server intentionally returns generic success
-  return { ok: true }
-}
-
-export async function verifyResetToken(token) {
-  const res = await fetch(`/api/Login/verify-reset?token=${encodeURIComponent(token)}`)
-  if (!res.ok) return { valid: false }
-  return await res.json()
-}
-
-export async function resetPassword(token, newPassword) {
-  const res = await fetch('/api/Login/reset-password', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token, newPassword }),
-  })
-
-  if (!res.ok) {
-    const txt = await res.text()
-    throw new Error(txt || 'Failed to reset password')
-  }
-
-  return await res.json()
-}
->>>>>>> origin/develop
+export const isAuthenticated = () => {
+    return !!getStoredToken();
+};
