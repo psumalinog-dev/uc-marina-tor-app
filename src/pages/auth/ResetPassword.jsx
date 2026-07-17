@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { verifyResetToken, resetPassword } from '../services/authService'
+import { verifyResetToken, resetPassword } from "../../services/authService";
 
 class ResetPasswordPage extends Component {
   constructor(props) {
