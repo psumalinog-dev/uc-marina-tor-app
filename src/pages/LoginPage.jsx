@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import { setBodyClass } from '../lib/adminlte'
+import './LoginPage.css'
 
 class LoginPage extends Component {
   constructor(props) {
@@ -60,100 +61,127 @@ class LoginPage extends Component {
     }
 
     return (
-      <div className="login-box">
-        <div className="card card-outline card-primary">
-          <div className="card-header">
-            <div className="text-center">
-              <h1 className="mb-0">
-                <b>Marina</b> TOR
-              </h1>
+      <div className="tor-login-shell">
+        <div className="login-box tor-login-box">
+          <div className="card card-outline card-primary tor-login-card">
+            <div className="card-header tor-login-header">
+              <div className="text-center">
+                <h1 className="mb-0 tor-login-title">MARINA TOR</h1>
+                <div className="tor-wheel-wrap" aria-hidden="true">
+                  <img
+                    className="tor-wheel"
+                    src="https://cdn.postimage.me/2026/07/22/FINALLOGO.png"
+                    alt="University of Cebu Marina TOR logo"
+                  />
+                </div>
+                <p className="tor-login-subtitle mb-0">
+                  <span className="tor-subtitle-line"></span>
+                  <span>UNIVERSITY OF CEBU</span>
+                  <span className="tor-subtitle-line"></span>
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="card-body login-card-body">
-            <p className="login-box-msg">Sign in to start your session</p>
 
-            <form onSubmit={this.handleSubmit}>
-              {error && (
-                <div className="alert alert-danger py-2" role="alert">
-                  {error}
-                </div>
-              )}
+            <div className="card-body login-card-body tor-login-body">
+              <p className="login-box-msg tor-login-msg">Sign in to start your session</p>
 
-              <div className="input-group mb-3">
-                <div className="form-floating">
-                  <input
-                    id="loginEmail"
-                    name="email"
-                    type="email"
-                    className="form-control"
-                    placeholder="Email"
-                    autoComplete="email"
-                    value={email}
-                    onChange={this.handleChange}
-                    disabled={isSubmitting}
-                  />
-                  <label htmlFor="loginEmail">Email</label>
-                </div>
-                <div className="input-group-text">
-                  <span className="bi bi-envelope"></span>
-                </div>
-              </div>
+              <form onSubmit={this.handleSubmit} className="tor-login-form">
+                {error && (
+                  <div className="alert alert-danger py-2" role="alert">
+                    {error}
+                  </div>
+                )}
 
-              <div className="input-group mb-3">
-                <div className="form-floating">
-                  <input
-                    id="loginPassword"
-                    name="password"
-                    type={this.state.showPassword ? 'text' : 'password'}
-                    className="form-control"
-                    placeholder="Password"
-                    autoComplete="current-password"
-                    value={password}
-                    onChange={this.handleChange}
-                    disabled={isSubmitting}
-                  />
-                  <label htmlFor="loginPassword">Password</label>
-                </div>
-                <div className="input-group-text">
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-link p-0"
-                    onClick={this.toggleShowPassword}
-                    aria-label={this.state.showPassword ? 'Hide password' : 'Show password'}
-                    disabled={isSubmitting}
-                    style={{ color: 'inherit', textDecoration: 'none' }}
-                  >
-                    <span className={`bi ${this.state.showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></span>
-                  </button>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-8 d-inline-flex align-items-center">
-                  <div className="form-check">
-                    <input className="form-check-input" type="checkbox" id="rememberMe" disabled={isSubmitting} />
-                    <label className="form-check-label" htmlFor="rememberMe">
-                      Remember Me
-                    </label>
+                <div className="input-group mb-3 tor-input-group">
+                  <div className="input-group-text tor-input-icon tor-input-icon-left tor-input-icon-accent">
+                    <span className="bi bi-envelope"></span>
+                  </div>
+                  <div className="form-floating">
+                    <input
+                      id="loginEmail"
+                      name="email"
+                      type="email"
+                      className="form-control tor-input"
+                      placeholder="Email"
+                      autoComplete="email"
+                      value={email}
+                      onChange={this.handleChange}
+                      disabled={isSubmitting}
+                    />
+                    <label htmlFor="loginEmail">Email</label>
+                  </div>
+                  <div className="input-group-text tor-input-icon tor-input-icon-right">
+                    <span className="bi bi-envelope"></span>
                   </div>
                 </div>
-                <div className="col-4">
-                  <div className="d-grid gap-2">
-                    <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-                      {isSubmitting ? 'Signing in…' : 'Sign In'}
+
+                <div className="input-group mb-3 tor-input-group">
+                  <div className="input-group-text tor-input-icon tor-input-icon-left tor-input-icon-accent">
+                    <span className="bi bi-lock"></span>
+                  </div>
+                  <div className="form-floating">
+                    <input
+                      id="loginPassword"
+                      name="password"
+                      type={this.state.showPassword ? 'text' : 'password'}
+                      className="form-control tor-input"
+                      placeholder="Password"
+                      autoComplete="current-password"
+                      value={password}
+                      onChange={this.handleChange}
+                      disabled={isSubmitting}
+                    />
+                    <label htmlFor="loginPassword">Password</label>
+                  </div>
+                  <div className="input-group-text tor-input-icon tor-input-icon-right">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-link p-0 tor-password-toggle"
+                      onClick={this.toggleShowPassword}
+                      aria-label={this.state.showPassword ? 'Hide password' : 'Show password'}
+                      disabled={isSubmitting}
+                    >
+                      <span className={`bi ${this.state.showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></span>
                     </button>
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-2 mb-0">
-                <Link to="/forgot-password">Forgot your password?</Link>
-              </div>
-            </form>
+                <div className="row tor-actions-row">
+                  <div className="col-12 d-inline-flex align-items-center">
+                    <div className="form-check">
+                      <input className="form-check-input" type="checkbox" id="rememberMe" disabled={isSubmitting} />
+                      <label className="form-check-label" htmlFor="rememberMe">
+                        Remember Me
+                      </label>
+                    </div>
+                  </div>
+                </div>
 
-            <p className="text-muted text-center small mt-4 mb-0">
-              Demo: <code>admin@example.com</code> / <code>password123</code>
-            </p>
+                <div className="tor-login-submit-row">
+                  <button type="submit" className="btn btn-primary tor-login-submit" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      'Signing in...'
+                    ) : (
+                      <>
+                        Sign In <span className="bi bi-box-arrow-in-right ms-2" aria-hidden="true"></span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                <div className="tor-divider" aria-hidden="true">
+                  <span className="bi bi-anchor-fill"></span>
+                </div>
+              </form>
+
+              <p className="text-muted text-center small mt-4 mb-0 tor-demo-credentials">
+                Demo: <code>admin@example.com</code> / <code>password123</code>
+              </p>
+            </div>
+          </div>
+
+          <div className="tor-login-meta-links text-center" aria-label="Additional account links">
+            <Link to="/forgot-password">Forgot Your Password?</Link>
           </div>
         </div>
       </div>

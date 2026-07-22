@@ -23,7 +23,14 @@ export const MAIN_NAV_ITEMS = [
         breadcrumb: 'Notifications',
     },
 
-  
+    {
+        path: '/students',
+        label: 'TOR Search',
+        icon: 'bi bi-people',
+        title: 'TOR Search',
+        breadcrumb: 'TOR Search',
+    },
+
     {
         path: '/marina-tor',
         label: 'Marina TOR',

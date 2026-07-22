@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+.login-page {
+  background-color: #0f172a !important;
+}
+
 .user-menu .user-image {
   width: 2rem;
   height: 2rem;
