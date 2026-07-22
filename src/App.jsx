@@ -9,6 +9,7 @@ import DashboardPage from './pages/main/DashboardPage'
 import AccountPage from './pages/main/AccountPage'
 import NotificationPage from './pages/main/NotificationPage'
 import MarinaTOR from './pages/main/MarinaTOR'
+import StudentPage from './pages/main/StudentPage'
 
 import { getStoredUser, login, logout } from './services/authService'
 
@@ -68,6 +69,7 @@ class App extends Component {
             <Route path="/dashboard" element={this.renderMainPage(DashboardPage)} />
             <Route path="/account" element={this.renderMainPage(AccountPage)} />
             <Route path="/notifications" element={this.renderMainPage(NotificationPage)} />
+            <Route path="/students" element={this.renderMainPage(StudentPage)} />
             <Route path="/marina-tor" element={this.renderMainPage(MarinaTOR)} />
           </Route>
 

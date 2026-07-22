@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { verifyResetToken, resetPassword } from '../services/authService'
+import { setBodyClass } from '../lib/adminlte'
+import './LoginPage.css'
 
 class ResetPasswordPage extends Component {
   constructor(props) {
@@ -11,9 +13,14 @@ class ResetPasswordPage extends Component {
   }
 
   async componentDidMount() {
+    setBodyClass('login-page bg-body-secondary')
     if (!this.token) return this.setState({ valid: false })
     const res = await verifyResetToken(this.token)
     this.setState({ valid: res.valid, email: res.email || '' })
+  }
+
+  componentWillUnmount() {
+    setBodyClass('')
   }
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value, error: '', message: '' })
@@ -38,13 +45,15 @@ class ResetPasswordPage extends Component {
     if (valid === null) return null
     if (!valid) {
       return (
-        <div className="login-box">
-          <div className="card card-outline card-primary">
-            <div className="card-body login-card-body text-center">
+        <div className="tor-login-shell">
+          <div className="login-box tor-login-box">
+            <div className="card card-outline card-primary tor-login-card">
+              <div className="card-body login-card-body tor-login-body text-center">
               <p className="text-danger">Invalid or expired reset link.</p>
               <p>
-                <Link to="/forgot-password">Request a new reset link</Link>
+                <Link className="tor-forgot-link" to="/forgot-password">Request a new reset link</Link>
               </p>
+              </div>
             </div>
           </div>
         </div>
@@ -52,66 +61,70 @@ class ResetPasswordPage extends Component {
     }
 
     return (
-      <div className="login-box">
-        <div className="card card-outline card-primary">
-          <div className="card-header text-center">
-            <h1 className="mb-0"><b>Marina</b> TOR</h1>
-          </div>
-          <div className="card-body login-card-body">
-            <p className="login-box-msg">Reset password for <strong>{email}</strong></p>
+      <div className="tor-login-shell">
+        <div className="login-box tor-login-box">
+          <div className="card card-outline card-primary tor-login-card">
+            <div className="card-header tor-login-header tor-login-header-compact text-center">
+              <h1 className="mb-0 tor-login-title">Marina TOR</h1>
+            </div>
+            <div className="card-body login-card-body tor-login-body">
+              <p className="login-box-msg tor-login-msg">Reset password for <strong>{email}</strong></p>
 
-            {error && <div className="alert alert-danger">{error}</div>}
-            {message && <div className="alert alert-success">{message}</div>}
+              {error && <div className="alert alert-danger">{error}</div>}
+              {message && <div className="alert alert-success">{message}</div>}
 
-            <form onSubmit={this.handleSubmit}>
-              <div className="input-group mb-3">
-                <div className="form-floating">
-                  <input
-                    id="rpPassword"
-                    name="password"
-                    type="password"
-                    className="form-control"
-                    placeholder="New password"
-                    value={password}
-                    onChange={this.handleChange}
-                    disabled={isSubmitting}
-                  />
-                  <label htmlFor="rpPassword">New password</label>
+              <form onSubmit={this.handleSubmit} className="tor-login-form">
+                <div className="input-group mb-3 tor-input-group">
+                  <div className="form-floating">
+                    <input
+                      id="rpPassword"
+                      name="password"
+                      type="password"
+                      className="form-control tor-input"
+                      placeholder="New password"
+                      value={password}
+                      onChange={this.handleChange}
+                      disabled={isSubmitting}
+                    />
+                    <label htmlFor="rpPassword">New password</label>
+                  </div>
+                  <div className="input-group-text tor-input-icon tor-input-icon-right">
+                    <span className="bi bi-lock-fill"></span>
+                  </div>
                 </div>
-                <div className="input-group-text">
-                  <span className="bi bi-lock-fill"></span>
-                </div>
-              </div>
 
-              <div className="input-group mb-3">
-                <div className="form-floating">
-                  <input
-                    id="rpConfirm"
-                    name="confirm"
-                    type="password"
-                    className="form-control"
-                    placeholder="Confirm password"
-                    value={confirm}
-                    onChange={this.handleChange}
-                    disabled={isSubmitting}
-                  />
-                  <label htmlFor="rpConfirm">Confirm password</label>
+                <div className="input-group mb-3 tor-input-group">
+                  <div className="form-floating">
+                    <input
+                      id="rpConfirm"
+                      name="confirm"
+                      type="password"
+                      className="form-control tor-input"
+                      placeholder="Confirm password"
+                      value={confirm}
+                      onChange={this.handleChange}
+                      disabled={isSubmitting}
+                    />
+                    <label htmlFor="rpConfirm">Confirm password</label>
+                  </div>
+                  <div className="input-group-text tor-input-icon tor-input-icon-right">
+                    <span className="bi bi-lock-fill"></span>
+                  </div>
                 </div>
-                <div className="input-group-text">
-                  <span className="bi bi-lock-fill"></span>
+
+                <div className="d-grid tor-login-submit-row">
+                  <button className="btn btn-primary tor-login-submit" disabled={isSubmitting} type="submit">
+                    {isSubmitting ? 'Updating…' : 'Update password'}
+                  </button>
                 </div>
-              </div>
+              </form>
 
-              <div className="d-grid">
-                <button className="btn btn-primary" disabled={isSubmitting} type="submit">
-                  {isSubmitting ? 'Updating…' : 'Update password'}
-                </button>
-              </div>
-            </form>
-
-            <p className="text-center mt-3">
-              <Link to="/login">Back to sign in</Link>
-            </p>
+              <p className="text-center mt-3 mb-0">
+                <Link className="tor-forgot-link" to="/login">
+                  Back to sign in
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
