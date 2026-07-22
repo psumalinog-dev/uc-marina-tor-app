@@ -23,7 +23,6 @@ export const MAIN_NAV_ITEMS = [
         breadcrumb: 'Notifications',
     },
 
-  
     {
         path: '/marina-tor',
         label: 'Marina TOR',
