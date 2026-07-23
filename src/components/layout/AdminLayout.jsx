@@ -10,11 +10,18 @@ import {
 import { getMainPageMeta, MAIN_NAV_ITEMS } from '../../pages/main/mainRoutes'
 
 class AdminLayout extends Component {
+  componentDidMount() {
+    setBodyClass('layout-fixed sidebar-expand-lg bg-body-tertiary')
+    initSidebarScrollbars()
+    initColorModeToggle()
+  }
+
    componentDidMount() {
      setBodyClass('layout-fixed sidebar-expand-lg')
      initSidebarScrollbars()
      initColorModeToggle()
     }
+
 
   componentDidUpdate() {
     initSidebarScrollbars()
@@ -51,6 +58,10 @@ class AdminLayout extends Component {
                 </Link>
               </li>
             </ul>
+    render() {
+        const { children, location } = this.props;
+        const { title, breadcrumb } = getMainPageMeta(location);
+        const { user } = this.state;
 
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
@@ -198,6 +209,97 @@ class AdminLayout extends Component {
             </nav>
           </div>
         </aside>
+                                {MAIN_NAV_ITEMS.map((item) => (
+                                    <li
+                                        key={item.path}
+                                        className="nav-item"
+                                    >
+                                        <NavLink
+                                            to={item.path}
+                                            className={({ isActive }) =>
+                                                `nav-link${isActive ? " active" : ""}`
+                                            }
+                                        >
+                                            <i
+                                                className={`nav-icon ${item.icon}`}
+                                            ></i>
+
+                                            <p className="d-flex justify-content-between align-items-center w-100 mb-0">
+
+                                                <span>
+                                                    {item.label}
+                                                </span>
+
+                                                {item.path === "/notifications" &&
+                                                    user && (
+                                                        <NotificationBadge
+                                                            userId={user.userId}
+                                                        />
+                                                    )}
+
+                                            </p>
+
+                                        </NavLink>
+                                    </li>
+                                ))}
+
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+
+                <main className="app-main uc-main">
+
+                    <div className="app-content-header">
+                        <div className="container-fluid">
+
+                            <div className="row">
+
+                                <div className="col-sm-6">
+                                    <h3 className="mb-0">
+                                        {title}
+                                    </h3>
+                                </div>
+
+                                <div className="col-sm-6">
+                                    <ol className="breadcrumb float-sm-end">
+                                        <li className="breadcrumb-item">
+                                            <Link to="/dashboard">
+                                                Home
+                                            </Link>
+                                        </li>
+
+                                        <li
+                                            className="breadcrumb-item active"
+                                            aria-current="page"
+                                        >
+                                            {breadcrumb}
+                                        </li>
+                                    </ol>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="app-content">
+                        <div className="container-fluid">
+                            {children}
+                        </div>
+                    </div>
+
+                </main>
+
+                <footer className="app-footer uc-footer">
+                    <div className="float-end d-none d-sm-inline">
+                        Marina TOR App
+                    </div>
+
+                    <strong>
+                        Copyright &copy; 2026 Marina TOR.
+                    </strong>
+                </footer>
 
          <main className="app-main uc-main">
           <div className="app-content-header">
