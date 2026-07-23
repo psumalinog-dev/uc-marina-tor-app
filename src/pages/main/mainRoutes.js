@@ -1,5 +1,4 @@
 export const MAIN_NAV_ITEMS = [
-<<<<<<< Updated upstream
   {
     path: '/dashboard',
     label: 'Dashboard',
@@ -80,9 +79,13 @@ export const MAIN_NAV_ITEMS = [
         breadcrumb: 'Account',
     },
 ];
->>>>>>> Stashed changes
+
 
 export function getMainPageMeta(pathname) {
-  const match = MAIN_NAV_ITEMS.find((item) => item.path === pathname)
-  return match || { title: 'Dashboard', breadcrumb: 'Dashboard' }
+    const match = MAIN_NAV_ITEMS.find((item) => item.path === pathname)
+
+    return match || {
+        title: 'Dashboard',
+        breadcrumb: 'Dashboard',
+    }
 }

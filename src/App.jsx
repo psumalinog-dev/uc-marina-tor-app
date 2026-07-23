@@ -1,11 +1,16 @@
 <<<<<<< Updated upstream
 import { Component } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+
 import LoginPage from './pages/LoginPage'
+import ForgotPasswordPage from './pages/ForgotPassword'
+import ResetPasswordPage from './pages/ResetPassword'
 import MainLayoutPage from './pages/main/MainLayoutPage'
 import DashboardPage from './pages/main/DashboardPage'
 import AccountPage from './pages/main/AccountPage'
 import NotificationPage from './pages/main/NotificationPage'
+import MarinaTOR from './pages/main/MarinaTOR'
+
 import { getStoredUser, login, logout } from './services/authService'
 =======
 import { Component } from "react";
@@ -30,15 +35,17 @@ import { getStoredUser, login, logout } from "@/services/authService";
 >>>>>>> Stashed changes
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    const user = getStoredUser()
+    constructor(props) {
+        super(props)
 
-    this.state = {
-      user,
-      isAuthenticated: Boolean(user),
+        const user = getStoredUser()
+
+        this.state = {
+            user,
+            isAuthenticated: Boolean(user),
+        }
     }
-  }
+
 
   handleLogin = async (credentials) => {
     const user = await login(credentials)
@@ -76,10 +83,14 @@ class App extends Component {
             }
           />
 
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
           <Route element={mainLayout}>
             <Route path="/dashboard" element={this.renderMainPage(DashboardPage)} />
             <Route path="/account" element={this.renderMainPage(AccountPage)} />
             <Route path="/notifications" element={this.renderMainPage(NotificationPage)} />
+            <Route path="/marina-tor" element={this.renderMainPage(MarinaTOR)} />
           </Route>
 
 <<<<<<< Updated upstream

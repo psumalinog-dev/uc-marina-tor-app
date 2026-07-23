@@ -1,13 +1,15 @@
 import { Component } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { setBodyClass } from '../lib/adminlte'
 
 class LoginPage extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       email: '',
       password: '',
+      showPassword: false,
       error: '',
       isSubmitting: false,
     }
@@ -19,6 +21,10 @@ class LoginPage extends Component {
 
   componentWillUnmount() {
     setBodyClass('')
+  }
+
+  toggleShowPassword = () => {
+    this.setState((s) => ({ showPassword: !s.showPassword }))
   }
 
   handleChange = (event) => {
@@ -41,10 +47,7 @@ class LoginPage extends Component {
     try {
       await onLogin({ email: email.trim(), password })
     } catch (err) {
-      this.setState({
-        error: err.message || 'Login failed. Please try again.',
-        isSubmitting: false,
-      })
+      this.setState({ error: err.message || 'Login failed. Please try again.', isSubmitting: false })
     }
   }
 
@@ -101,7 +104,7 @@ class LoginPage extends Component {
                   <input
                     id="loginPassword"
                     name="password"
-                    type="password"
+                    type={this.state.showPassword ? 'text' : 'password'}
                     className="form-control"
                     placeholder="Password"
                     autoComplete="current-password"
@@ -112,19 +115,23 @@ class LoginPage extends Component {
                   <label htmlFor="loginPassword">Password</label>
                 </div>
                 <div className="input-group-text">
-                  <span className="bi bi-lock-fill"></span>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-link p-0"
+                    onClick={this.toggleShowPassword}
+                    aria-label={this.state.showPassword ? 'Hide password' : 'Show password'}
+                    disabled={isSubmitting}
+                    style={{ color: 'inherit', textDecoration: 'none' }}
+                  >
+                    <span className={`bi ${this.state.showPassword ? 'bi-eye-slash' : 'bi-eye'}`}></span>
+                  </button>
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-8 d-inline-flex align-items-center">
                   <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="rememberMe"
-                      disabled={isSubmitting}
-                    />
+                    <input className="form-check-input" type="checkbox" id="rememberMe" disabled={isSubmitting} />
                     <label className="form-check-label" htmlFor="rememberMe">
                       Remember Me
                     </label>
@@ -137,6 +144,10 @@ class LoginPage extends Component {
                     </button>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-2 mb-0">
+                <Link to="/forgot-password">Forgot your password?</Link>
               </div>
             </form>
 
