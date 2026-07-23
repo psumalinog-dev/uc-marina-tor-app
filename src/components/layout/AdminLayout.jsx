@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import {
+<<<<<<< Updated upstream
   destroySidebarScrollbars,
   initColorModeToggle,
   initSidebarScrollbars,
@@ -14,6 +15,36 @@ class AdminLayout extends Component {
     initSidebarScrollbars()
     initColorModeToggle()
   }
+=======
+    destroySidebarScrollbars,
+    initColorModeToggle,
+    initSidebarScrollbars,
+    setBodyClass,
+} from "@/lib/adminlte";
+
+import {
+    getMainPageMeta,
+    MAIN_NAV_ITEMS,
+} from "@/pages/main/mainRoutes";
+
+import NotificationBadge from "@/components/notification/NotificationBadge";
+import { getStoredUser } from "@/services/authService";
+
+class AdminLayout extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user: getStoredUser(),
+        };
+    }
+
+    componentDidMount() {
+        setBodyClass("layout-fixed sidebar-expand-lg");
+        initSidebarScrollbars();
+        initColorModeToggle();
+    }
+>>>>>>> Stashed changes
 
   componentDidUpdate() {
     initSidebarScrollbars()
@@ -33,6 +64,7 @@ class AdminLayout extends Component {
     const { user, children, location } = this.props
     const { title, breadcrumb } = getMainPageMeta(location)
 
+<<<<<<< Updated upstream
     return (
       <div className="app-wrapper">
         <nav className="app-header navbar navbar-expand bg-body">
@@ -50,6 +82,12 @@ class AdminLayout extends Component {
                 </Link>
               </li>
             </ul>
+=======
+    render() {
+        const { children, location } = this.props;
+        const { title, breadcrumb } = getMainPageMeta(location);
+        const { user } = this.state;
+>>>>>>> Stashed changes
 
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
@@ -175,6 +213,7 @@ class AdminLayout extends Component {
             </Link>
           </div>
 
+<<<<<<< Updated upstream
           <div className="sidebar-wrapper">
             <nav className="mt-2" aria-label="Main navigation">
               <ul
@@ -197,6 +236,99 @@ class AdminLayout extends Component {
             </nav>
           </div>
         </aside>
+=======
+                                {MAIN_NAV_ITEMS.map((item) => (
+                                    <li
+                                        key={item.path}
+                                        className="nav-item"
+                                    >
+                                        <NavLink
+                                            to={item.path}
+                                            className={({ isActive }) =>
+                                                `nav-link${isActive ? " active" : ""}`
+                                            }
+                                        >
+                                            <i
+                                                className={`nav-icon ${item.icon}`}
+                                            ></i>
+
+                                            <p className="d-flex justify-content-between align-items-center w-100 mb-0">
+
+                                                <span>
+                                                    {item.label}
+                                                </span>
+
+                                                {item.path === "/notifications" &&
+                                                    user && (
+                                                        <NotificationBadge
+                                                            userId={user.userId}
+                                                        />
+                                                    )}
+
+                                            </p>
+
+                                        </NavLink>
+                                    </li>
+                                ))}
+
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+
+                <main className="app-main uc-main">
+
+                    <div className="app-content-header">
+                        <div className="container-fluid">
+
+                            <div className="row">
+
+                                <div className="col-sm-6">
+                                    <h3 className="mb-0">
+                                        {title}
+                                    </h3>
+                                </div>
+
+                                <div className="col-sm-6">
+                                    <ol className="breadcrumb float-sm-end">
+                                        <li className="breadcrumb-item">
+                                            <Link to="/dashboard">
+                                                Home
+                                            </Link>
+                                        </li>
+
+                                        <li
+                                            className="breadcrumb-item active"
+                                            aria-current="page"
+                                        >
+                                            {breadcrumb}
+                                        </li>
+                                    </ol>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="app-content">
+                        <div className="container-fluid">
+                            {children}
+                        </div>
+                    </div>
+
+                </main>
+
+                <footer className="app-footer uc-footer">
+                    <div className="float-end d-none d-sm-inline">
+                        Marina TOR App
+                    </div>
+
+                    <strong>
+                        Copyright &copy; 2026 Marina TOR.
+                    </strong>
+                </footer>
+>>>>>>> Stashed changes
 
         <main className="app-main">
           <div className="app-content-header">

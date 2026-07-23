@@ -1,0 +1,114 @@
+.audit-page {
+    padding: 30px;
+}
+
+.audit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #003DA5, #0056d6);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+    .audit-header h2 {
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .audit-header p {
+        margin: 5px 0 0;
+        opacity: .9;
+    }
+
+.audit-total {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+    .audit-total span {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .audit-total small {
+        font-size: 12px;
+    }
+
+.audit-toolbar {
+    margin-bottom: 20px;
+}
+
+    .audit-toolbar input {
+        max-width: 350px;
+    }
+
+.audit-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0,0,0,.08);
+}
+
+    .audit-card table {
+        margin: 0;
+    }
+
+    .audit-card thead {
+        background: #003DA5;
+        color: white;
+    }
+
+    .audit-card th {
+        font-weight: 600;
+        padding: 15px;
+    }
+
+    .audit-card td {
+        vertical-align: middle;
+        padding: 15px;
+    }
+
+    .audit-card tbody tr:hover {
+        background: #f5f9ff;
+    }
+
+.badge {
+    font-size: 13px;
+    padding: 7px 12px;
+    border-radius: 30px;
+}
+
+.audit-card tbody tr {
+    transition: .2s;
+}
+
+    .audit-card tbody tr:hover {
+        transform: scale(1.003);
+    }
+
+@media (max-width:768px) {
+
+    .audit-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .audit-toolbar input {
+        max-width: 100%;
+    }
+
+    .audit-card {
+        overflow-x: auto;
+    }
+}

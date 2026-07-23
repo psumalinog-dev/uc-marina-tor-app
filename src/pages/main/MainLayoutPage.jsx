@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import AdminLayout from '../../components/layout/AdminLayout'
+import AdminLayout from '@/components/layout/AdminLayout'
 
 function MainLayoutPage({ user, isAuthenticated, onLogout }) {
   const location = useLocation()
